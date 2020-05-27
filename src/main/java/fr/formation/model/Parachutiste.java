@@ -30,7 +30,7 @@ public class Parachutiste {
 	
 	@Id
 	@Column(name = "numero_licence",  length = 20)
-	@JsonView({Views.Common.class, Views.Vol.class})
+	@JsonView(Views.Common.class)
 	private int numeroLicence;
 	
 	@Column(name = "nom", nullable = false, length = 25)
