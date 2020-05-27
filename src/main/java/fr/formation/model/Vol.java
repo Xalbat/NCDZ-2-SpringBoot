@@ -42,12 +42,12 @@ public class Vol {
 	//Relation n°3 directe
 	@OneToOne
 	@JoinColumn(name = "id_avion")
-	@JsonView(Views.Vol.class)
+	@JsonView({Views.Vol.class, Views.Parachutiste.class})
 	private Avion avion;
 	
 	@Column(name = "situation_vol", length = 15)
 	@Enumerated(EnumType.STRING)
-	@JsonView({Views.Common.class, Views.Saut.class})
+	@JsonView(Views.Common.class)
 	private SituationVol situationVol;
 	
 	@OneToOne

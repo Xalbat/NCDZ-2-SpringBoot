@@ -34,7 +34,7 @@ public class Saut {
 	//Relation n°1 directe
 	@ManyToOne
 	@JoinColumn(name = "id_vol")
-	@JsonView(Views.Common.class)
+	@JsonView({Views.Saut.class, Views.Parachutiste.class})
 	private Vol vol;
 	
 	@Column(name = "altitude")

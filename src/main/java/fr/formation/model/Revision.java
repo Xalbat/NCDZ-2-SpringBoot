@@ -34,7 +34,7 @@ public class Revision {
 	
 	@ManyToOne
 	@JoinColumn(name = "plieur_voile_primaire")
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Parachute.class)
 	private Parachutiste plieurVoilePrimaire;
 	
 	@Column(name = "date_dernier_pliage_secours", nullable = false)
@@ -44,7 +44,7 @@ public class Revision {
 	
 	@ManyToOne
 	@JoinColumn(name = "plieur_voile_secours")
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Parachute.class)
 	private Parachutiste plieurVoileSecours;
 	
 	

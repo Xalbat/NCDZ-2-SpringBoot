@@ -57,7 +57,7 @@ public class Parachute {
 	@OneToOne
 	@JoinColumn(name = "id_revision")
 	@NotNull
-	@JsonView({Views.Common.class, Views.Vol.class})
+	@JsonView(Views.Parachute.class)
 	private Revision revision;
 	
 	@Column(name = "proprietaire", nullable = false, length = 15)
