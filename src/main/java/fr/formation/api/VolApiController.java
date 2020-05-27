@@ -40,7 +40,7 @@ public class VolApiController {
 	 * @return
 	 */
 	@GetMapping
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Vol.class)
 	public List<Vol> findAll() {
 		return daoVol.findAll();
 	}

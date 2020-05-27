@@ -41,7 +41,7 @@ public class AvionApiController {
 	 * @return
 	 */
 	@GetMapping
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Avion.class)
 	public List<Avion> findAll() {
 		return daoAvion.findAll();
 	}

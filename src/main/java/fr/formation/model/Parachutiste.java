@@ -43,7 +43,7 @@ public class Parachutiste {
 	
 	@Column(name = "niveau", nullable = false, length = 25)
 	@Enumerated(EnumType.STRING)
-	@JsonView(Views.Parachutiste.class)
+	@JsonView(Views.Common.class)
 	private Niveau niveau;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
