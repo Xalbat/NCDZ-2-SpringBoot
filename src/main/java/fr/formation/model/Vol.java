@@ -67,9 +67,8 @@ public class Vol {
 	private LocalDate date;
 
 	//Relation n°1 inverse
-	@OneToMany
-	@JoinColumn
-	@JsonView({Views.Saut.class, Views.Vol.class})
+	@OneToMany(mappedBy = "vol")
+	@JsonView(Views.Vol.class)
 	private List<Saut> listSaut;
 	
 	
