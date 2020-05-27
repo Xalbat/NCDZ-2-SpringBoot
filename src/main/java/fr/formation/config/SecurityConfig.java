@@ -21,11 +21,12 @@ import fr.formation.security.AuthService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @Profile("!dev")
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 	
 	//Necessaire si passe par login et mdp dans BDD
 	@Autowired
 	AuthService authService;
+	
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -33,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();	//	Avec cryptage
 	}
 	
+	/*
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
@@ -42,12 +44,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/composer-vol/**").hasRole("ADMIN")
 		.antMatchers("/**").hasAnyRole("ADMIN", "SECRETAIRE")
 		.and()
-		.formLogin()/*	Tout ça c'est pour une page d'autentification personalisée. pas utilisé pour le moment
-			.loginPage("/connect") //lien vers getmapping --> HomeController
-			.loginProcessingUrl("/connect") //lien du formunaire en post !!!
-			.defaultSuccessUrl("/composer-avion", true)
-			.failureUrl("/connect?error=true")
-			.permitAll()*/;
+		.formLogin();	//	Tout ça c'est pour une page d'autentification personalisée. pas utilisé pour le moment
+		//	.loginPage("/connect") //lien vers getmapping --> HomeController
+		//	.loginProcessingUrl("/connect") //lien du formunaire en post !!!
+		//	.defaultSuccessUrl("/composer-avion", true)
+		//	.failureUrl("/connect?error=true")
+		//	.permitAll();
 		
 		//	pour jeton CSRF :
 		// <input type="hidden" th:name="${_csrf.parameterName}" th:value="{_csrf.token}"/>
@@ -56,15 +58,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(this.authService);
-	/*	Si jamais doit passer par connection directe et non pas BDD
-		auth.inMemoryAuthentication()
-		 .withUser("admin").password("{noop}admin").roles("ADMIN")
-		.and()
-		.withUser("secre").password("{noop}secre").roles("SECRETAIRE");*/
-	}
+	//	Si jamais doit passer par connection directe et non pas BDD
+	//	auth.inMemoryAuthentication()
+	//	 .withUser("admin").password("{noop}admin").roles("ADMIN")
+	//	.and()
+	//	.withUser("secre").password("{noop}secre").roles("SECRETAIRE");
+	}*/
 	
 	
-	/*
+	
 	@Configuration
 	@Order(1)
 	public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
@@ -72,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			http.antMatcher("/api/**")
 				.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
-				.antMatchers("/**").hasAnyRole("ADMIN", "MEDECIN")
+				.antMatchers("/**").permitAll()
 				.and().httpBasic()
 				.and().csrf().disable()
 				;
@@ -85,21 +87,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 @Override
 	        protected void configure(HttpSecurity http) throws Exception {
 		        http.authorizeRequests()
+		        .antMatchers("/assets/**").permitAll()
 				.antMatchers("/avionnage/**").permitAll()
 				.antMatchers("/composer-avion/**").hasRole("ADMIN")
 				.antMatchers("/composer-vol/**").hasRole("ADMIN")
 				.antMatchers("/**").hasAnyRole("ADMIN", "SECRETAIRE")
 				.and()
 				.formLogin()
-				.loginPage("/connect") //Lien vers le @GetMapping
-				.loginProcessingUrl("/connect") //Lien du POST du form html, c'est Spring qui crée un @PostMapping("/connect")
-				.defaultSuccessUrl("/composer-vol") 
-				.failureUrl("/connect?error=true") //Page d'erreur de connexion
-				.permitAll()
+				//	.loginPage("/connect") //Lien vers le @GetMapping
+				//	.loginProcessingUrl("/connect") //Lien du POST du form html, c'est Spring qui crée un @PostMapping("/connect")
+				//	.defaultSuccessUrl("/composer-vol") 
+				//	.failureUrl("/connect?error=true") //Page d'erreur de connexion
+				//	.permitAll()
 				.and().csrf().disable() //Si vous voulez désactiver la protection CSRF
 				;
 		 }
-	}*/
+	}
 	
 	
 	

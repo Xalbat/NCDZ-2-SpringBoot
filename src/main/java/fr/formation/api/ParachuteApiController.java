@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -67,6 +68,7 @@ public class ParachuteApiController {
 	 * @return
 	 * @throws Exception
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SECRETAIRE')")
 	@PostMapping
 	@JsonView(Views.Parachute.class)
 	public Parachute add(@Valid @RequestBody Parachute parachute, BindingResult result) throws Exception {
@@ -76,11 +78,13 @@ public class ParachuteApiController {
 		return daoParachute.save(parachute);
 	}
 
+	
 	/** Modifie un parachute de la BDD
 	 * @param idParachute
 	 * @param parachute
 	 * @return
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SECRETAIRE')")
 	@PutMapping("/{idParachute}")
 	@JsonView(Views.Parachute.class)
 	public Parachute update(@PathVariable int idParachute, @RequestBody Parachute parachute) {
@@ -94,6 +98,7 @@ public class ParachuteApiController {
 	 * @param idParachute
 	 * @return
 	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/{idParachute}/supp") 
 	@JsonView(Views.Parachute.class)
 	public boolean delete(@PathVariable int idParachute) {

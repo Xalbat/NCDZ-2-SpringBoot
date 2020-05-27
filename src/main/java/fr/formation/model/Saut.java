@@ -52,7 +52,6 @@ public class Saut {
 	uniqueConstraints = @UniqueConstraint(columnNames = { "id_saut", "id_parachutiste"}),
 	joinColumns = @JoinColumn(name = "id_saut", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "id_parachutiste", referencedColumnName = "numero_licence"))
-	@NotNull
 	@JsonView(Views.Saut.class)
 	private List<Parachutiste> listParachutiste;
 	

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,17 +45,18 @@ public class Vol {
 	@JsonView(Views.Vol.class)
 	private Avion avion;
 	
-	@Column(name = "situation_vol")
+	@Column(name = "situation_vol", length = 15)
+	@Enumerated(EnumType.STRING)
 	@JsonView({Views.Common.class, Views.Saut.class})
 	private SituationVol situationVol;
 	
 	@OneToOne
-	@JoinColumn(name="id_respo_vol")
+	@JoinColumn(name = "id_respo_vol")
 	@JsonView({Views.Vol.class, Views.Saut.class})
 	private Parachutiste respoVol;
 	
 	@ManyToOne
-	@JoinColumn(name="id_respo_sol")
+	@JoinColumn(name = "id_respo_sol")
 	@JsonView({Views.Vol.class, Views.Saut.class})
 	private Parachutiste respoSol;
 	

@@ -64,6 +64,7 @@ public class AvionApiController {
 	 * @param avion
 	 * @return
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SECRETAIRE')")
 	@PutMapping("/{id}")
 	@JsonView(Views.Avion.class)
 	public Avion update(@PathVariable int id, @RequestBody Avion avion) {
