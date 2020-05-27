@@ -1,9 +1,12 @@
 package fr.formation.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import fr.formation.model.Compte;
 
 public interface IDAOCompte extends JpaRepository<Compte, Integer>{
-//	Pas surt que ce DOA soit utile...
+
+	public Compte findByLogin(String login);
+	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -58,22 +59,6 @@ public class AvionApiController {
 	}
 
 
-	/** Ajoute un avion à la BDD
-	 * @param avion
-	 * @param result
-	 * @return
-	 * @throws Exception
-	 */
-	@PostMapping
-	@JsonView(Views.Avion.class)
-	public Avion add(@Valid @RequestBody Avion avion, BindingResult result) throws Exception {
-		if (result.hasErrors()) {
-			throw new Exception();
-		}
-		return daoAvion.save(avion);
-	}
-
-
 	/** Modification d'un avion existant 
 	 * @param id
 	 * @param avion
@@ -88,10 +73,28 @@ public class AvionApiController {
 	}
 
 
+	/** Ajoute un avion à la BDD
+	 * @param avion
+	 * @param result
+	 * @return
+	 * @throws Exception
+	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping
+	@JsonView(Views.Avion.class)
+	public Avion add(@Valid @RequestBody Avion avion, BindingResult result) throws Exception {
+		if (result.hasErrors()) {
+			throw new Exception();
+		}
+		return daoAvion.save(avion);
+	}
+
+
 	/** Supression d'un avion existant
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/{id}/supp") 
 	@JsonView(Views.Avion.class)
 	public boolean delete(@PathVariable int id) {
