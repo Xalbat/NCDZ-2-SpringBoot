@@ -43,7 +43,7 @@ public class SautApiController {
 	 * @return
 	 */
 	@GetMapping
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Saut.class)
 	public List<Saut> findAll() {
 		return daoSaut.findAll();
 	}
