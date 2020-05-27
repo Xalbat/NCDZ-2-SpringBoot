@@ -37,30 +37,30 @@ public class Avion {
 	private String modele;
 
 	@Column(name = "altitude")
-	@Positive
+//	@Positive
 	@JsonView(Views.Avion.class)
 	private int altitudeMax;
 
 	@Column(name = "capacite", nullable = false)
-	@Positive
+//	@Positive
 	@NotNull
 	@JsonView(Views.Avion.class)
 	private int capacite;
 
 	@Column(name = "rotation_max", nullable = false)
-	@Positive
+//	@Positive
 	@NotNull
 	@JsonView(Views.Avion.class)
 	private int rotationMax;
 
 	@Column(name = "rotation")
 	@JsonView(Views.Avion.class)
-	@Positive
+//	@Positive
 	private int rotation;
 
 	@Column(name = "temps_montee")
 	@JsonView(Views.Avion.class)
-	@Positive
+//	@Positive
 	private int tempsMontee;
 
 	@Column(name = "etat", length = 15)
