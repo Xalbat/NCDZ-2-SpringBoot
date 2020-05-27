@@ -30,52 +30,52 @@ public class Parachute {
 	private int idParachute;
 	
 	@Column(name = "nom_harnais", nullable = false, length = 25)
-	@JsonView(Views.Parachute.class)
+	@JsonView(Views.Common.class)
 	private String nomHarnais;
 	
 	@Column(name = "type_securite", nullable = false, length = 15)
 	@Enumerated(EnumType.STRING)
-	@JsonView(Views.Parachute.class)
+	@JsonView(Views.Common.class)
 	private TypeSecurite typeSecurite;
 	
 	@Column(name = "nom_voile_principale", nullable = false, length = 25)
-	@JsonView(Views.Parachute.class)
+	@JsonView(Views.Common.class)
 	private String nomVoilePricipale;
 	
 	@Column(name = "taille_voile_principale", nullable = false)
-	@JsonView(Views.Parachute.class)
+	@JsonView(Views.Common.class)
 	private int tailleVoilePricipale;
 	
 	@Column(name = "nom_voile_secours", nullable = false, length = 25)
-	@JsonView(Views.Parachute.class)
+	@JsonView(Views.Common.class)
 	private String nomVoileSecours;
 	
 	@Column(name = "taille_voile_secours", nullable = false)
-	@JsonView(Views.Parachute.class)
+	@JsonView(Views.Common.class)
 	private int tailleVoileSecours;
 	
 	@OneToOne
 	@JoinColumn(name = "id_revision")
 	@NotNull
-	@JsonView({Views.Parachute.class, Views.Vol.class})
+	@JsonView({Views.Common.class, Views.Vol.class})
 	private Revision revision;
 	
 	@Column(name = "proprietaire", nullable = false, length = 15)
 	@Enumerated(EnumType.STRING)
-	@JsonView(Views.Parachute.class)
+	@JsonView(Views.Common.class)
 	private Proprietaire proprietaire;
 	
 	@Column(name = "etat_parachute", length = 15)
 	@Enumerated(EnumType.STRING)
-	@JsonView(Views.Parachutiste.class)
+	@JsonView(Views.Common.class)
 	private EtatParachute etatParachute;
 
 	@Column(name = "Declanch_secours_auto")
-	@JsonView(Views.Parachute.class)
+	@JsonView(Views.Common.class)
 	private int secoursAuto;
 	
 	@Column(name = "Declanch_secours_manuel")
-	@JsonView(Views.Parachute.class)
+	@JsonView(Views.Common.class)
 	private int secoursManuel;
 	
 	
