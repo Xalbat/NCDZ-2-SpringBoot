@@ -92,7 +92,7 @@ public class ParachutisteApiController {
 	 * @param numeroLicence
 	 * @return
 	 */
-	@DeleteMapping("/{numeroLicence}/supp") 
+	@DeleteMapping("/{numeroLicence}") 
 	@JsonView(Views.Parachutiste.class)
 	public boolean delete(@PathVariable int numeroLicence) {
 		try {
