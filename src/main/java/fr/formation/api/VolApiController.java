@@ -82,6 +82,7 @@ public class VolApiController {
 	@JsonView(Views.Vol.class)
 	public Vol update(@PathVariable int idVol, @RequestBody Vol vol) {
 		vol.setIdVol(idVol);
+		System.out.println(vol.getIdVol());
 		this.daoVol.save(vol);
 		return vol;
 	}

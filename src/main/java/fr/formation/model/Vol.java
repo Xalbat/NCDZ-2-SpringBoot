@@ -127,6 +127,14 @@ public class Vol {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
+	public List<Saut> getListSaut() {
+		return listSaut;
+	}
+
+	public void setListSaut(List<Saut> listSaut) {
+		this.listSaut = listSaut;
+	}
 	
 	
 	

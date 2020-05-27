@@ -1,6 +1,5 @@
 package fr.formation.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -35,12 +34,12 @@ public class Saut {
 	//Relation n°1 directe
 	@ManyToOne
 	@JoinColumn(name = "id_vol")
-	@JsonView(Views.Saut.class)
+	@JsonView(Views.Common.class)
 	private Vol vol;
 	
 	@Column(name = "altitude")
 	@NotNull
-	@JsonView(Views.Saut.class)
+	@JsonView(Views.Common.class)
 	private int altitude;
 	
 	
@@ -52,7 +51,7 @@ public class Saut {
 	uniqueConstraints = @UniqueConstraint(columnNames = { "id_saut", "id_parachutiste"}),
 	joinColumns = @JoinColumn(name = "id_saut", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "id_parachutiste", referencedColumnName = "numero_licence"))
-	@JsonView(Views.Saut.class)
+	@JsonView(Views.Common.class)
 	private List<Parachutiste> listParachutiste;
 	
 	@Column
