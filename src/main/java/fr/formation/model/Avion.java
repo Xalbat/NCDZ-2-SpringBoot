@@ -17,6 +17,7 @@ import fr.formation.enumerator.EtatAvion;
 import fr.formation.enumerator.SituationAvion;
 import fr.formation.projection.Views;
 
+
 @Entity
 @Table(name = "avion")
 public class Avion {
