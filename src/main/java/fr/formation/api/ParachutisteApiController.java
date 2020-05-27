@@ -42,7 +42,7 @@ public class ParachutisteApiController {
 	 * @return
 	 */
 	@GetMapping
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Parachutiste.class)
 	public List<Parachutiste> findAll() {
 		return daoParachutiste.findAll();
 	}
