@@ -26,11 +26,11 @@ public class Pilote {
 	private int licence;
 
 	@Column(name = "nom", nullable = false, length = 25)
-	@JsonView({Views.Pilote.class, Views.Vol.class})
+	@JsonView(Views.Common.class)
 	private String nom;
 	
 	@Column(name = "prenom", nullable = false, length = 25)
-	@JsonView(Views.Pilote.class)
+	@JsonView(Views.Common.class)
 	private String prenom;
 
 	@ManyToMany/*(mappedBy = "idAvion")*/
