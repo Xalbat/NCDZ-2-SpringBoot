@@ -55,7 +55,7 @@ public class ParachutisteApiController {
 	 */
 	@GetMapping("/{numeroLicence}")
 	@JsonView(Views.Parachutiste.class)
-	public Parachutiste findById(@PathVariable int numeroLicence) {
+	public Parachutiste findById(@PathVariable long numeroLicence) {
 		return daoParachutiste.findById(numeroLicence).orElse(new Parachutiste());
 	}
 
@@ -84,7 +84,7 @@ public class ParachutisteApiController {
 	//Les parachutiste doivent pouvoir modifier leur parachute, donc ils faut qu'il ai les droits de modification
 	@PutMapping("/{numeroLicence}")
 	@JsonView(Views.Parachutiste.class)
-	public Parachutiste update(@PathVariable int numeroLicence, @RequestBody Parachutiste parachutiste) {
+	public Parachutiste update(@PathVariable long numeroLicence, @RequestBody Parachutiste parachutiste) {
 		parachutiste.setNumeroLicence(numeroLicence);
 		this.daoParachutiste.save(parachutiste);
 		return parachutiste;
@@ -98,11 +98,12 @@ public class ParachutisteApiController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/{numeroLicence}") 
 	@JsonView(Views.Parachutiste.class)
-	public boolean delete(@PathVariable int numeroLicence) {
+	public boolean delete(@PathVariable long numeroLicence) {
 		try {
 			this.daoParachutiste.deleteById(numeroLicence);
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

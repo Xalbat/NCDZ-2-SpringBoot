@@ -78,7 +78,7 @@ public class Parachutiste {
 	public long getNumeroLicence() {
 		return numeroLicence;
 	}
-	public void setNumeroLicence(int numeroLicence) {
+	public void setNumeroLicence(long numeroLicence) {
 		this.numeroLicence = numeroLicence;
 	}
 	public String getNom() {

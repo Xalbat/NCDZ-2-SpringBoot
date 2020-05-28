@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import fr.formation.dao.IDAOParachute;
 import fr.formation.dao.IDAORevision;
 import fr.formation.model.Parachute;
+import fr.formation.model.Revision;
 import fr.formation.projection.Views;
 
 @RestController
@@ -36,7 +37,7 @@ public class ParachuteApiController {
 	@Autowired
 	private IDAOParachute daoParachute;
 	@Autowired
-	private IDAORevision daoRevison;
+	private IDAORevision daoRevision;
 
 //	fonction de check de la vérification des sac ?
 	
@@ -45,7 +46,7 @@ public class ParachuteApiController {
 	 * @return
 	 */
 	@GetMapping
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Parachute.class)
 	public List<Parachute> findAll() {
 		return daoParachute.findAll();
 	}
@@ -75,6 +76,7 @@ public class ParachuteApiController {
 		if (result.hasErrors()) {
 			throw new Exception();
 		}
+		daoRevision.save(parachute.getRevision());
 		return daoParachute.save(parachute);
 	}
 
@@ -89,6 +91,7 @@ public class ParachuteApiController {
 	@JsonView(Views.Parachute.class)
 	public Parachute update(@PathVariable int idParachute, @RequestBody Parachute parachute) {
 		parachute.setIdParachute(idParachute);
+		daoRevision.save(parachute.getRevision());
 		this.daoParachute.save(parachute);
 		return parachute;
 	}
@@ -99,7 +102,7 @@ public class ParachuteApiController {
 	 * @return
 	 */
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@DeleteMapping("/{idParachute}/supp") 
+	@DeleteMapping("/{idParachute}") 
 	@JsonView(Views.Parachute.class)
 	public boolean delete(@PathVariable int idParachute) {
 		try {
