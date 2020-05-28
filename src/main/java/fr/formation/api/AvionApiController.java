@@ -41,7 +41,7 @@ public class AvionApiController {
 	 * faible informations
 	 * @return
 	 */
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SECRETAIRE')")
 	@GetMapping
 	@JsonView(Views.Avion.class)
 	public List<Avion> findAll() {
@@ -53,6 +53,7 @@ public class AvionApiController {
 	 * @param id
 	 * @return
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SECRETAIRE')")
 	@GetMapping("/{id}")
 	@JsonView(Views.Avion.class)
 	public Avion findById(@PathVariable int id) {
