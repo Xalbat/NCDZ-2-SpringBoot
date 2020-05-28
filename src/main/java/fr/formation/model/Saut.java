@@ -44,7 +44,8 @@ public class Saut {
 	
 	@Column(name = "is_video")
 	@JsonView(Views.Common.class)
-	private boolean isVideo;
+	@NotNull
+	private boolean isVideo = false;
 	
 	
 	//Relation n°2 directe
