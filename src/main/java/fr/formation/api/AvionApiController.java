@@ -1,6 +1,7 @@
 package fr.formation.api;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.formation.dao.IDAOAvion;
+import fr.formation.dao.IDAOPilote;
 import fr.formation.model.Avion;
 import fr.formation.projection.Views;
 
@@ -34,6 +36,10 @@ public class AvionApiController {
 	
 	@Autowired
 	private IDAOAvion daoAvion;
+	
+	@Autowired
+	private IDAOPilote daoPilote;
+	
 
 
 
@@ -102,6 +108,13 @@ public class AvionApiController {
 	@JsonView(Views.Avion.class)
 	public boolean delete(@PathVariable int id) {
 		try {
+			this.daoPilote.findAll().parallelStream().forEach( p -> {
+				Optional<Avion> aTemp = p.getListeAvion().parallelStream().filter(a -> a.getIdAvion() == id).findAny();
+				if(aTemp.isPresent()) {
+					p.getListeAvion().remove(aTemp.get());
+					this.daoPilote.save(p);
+				}
+			});
 			this.daoAvion.deleteById(id);
 			return true;
 		} catch (Exception e) {
