@@ -31,7 +31,7 @@ public class Parachutiste {
 	@Id
 	@Column(name = "numero_licence",  length = 20)
 	@JsonView(Views.Common.class)
-	private int numeroLicence;
+	private long numeroLicence;
 	
 	@Column(name = "nom", nullable = false, length = 25)
 	@JsonView(Views.Common.class)
@@ -75,60 +75,33 @@ public class Parachutiste {
 	
 
 
-	public int getNumeroLicence() {
+	public long getNumeroLicence() {
 		return numeroLicence;
 	}
-
-
-
 	public void setNumeroLicence(int numeroLicence) {
 		this.numeroLicence = numeroLicence;
 	}
-
-
-
 	public String getNom() {
 		return nom;
 	}
-
-
-
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-
-
 	public String getPrenom() {
 		return prenom;
 	}
-
-
-
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
-
-
 	public LocalDate getDateLicence() {
 		return dateLicence;
 	}
-
-
-
 	public void setDateLicence(LocalDate dateLicence) {
 		this.dateLicence = dateLicence;
 	}
-
-
-
 	public Parachute getParachute() {
 		return parachute;
 	}
-
-
-
 	public void setParachute(Parachute parachute) {
 		this.parachute = parachute;
 	}

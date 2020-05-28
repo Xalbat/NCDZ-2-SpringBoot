@@ -47,16 +47,16 @@ public class Vol {
 	
 	@Column(name = "situation_vol", length = 15)
 	@Enumerated(EnumType.STRING)
-	@JsonView(Views.Common.class)
+	@JsonView({Views.Common.class, Views.Saut.class})
 	private SituationVol situationVol;
 	
 	@OneToOne
-	@JoinColumn(name="id_respo_vol")
+	@JoinColumn(name = "id_respo_vol")
 	@JsonView({Views.Vol.class, Views.Saut.class})
 	private Parachutiste respoVol;
 	
 	@ManyToOne
-	@JoinColumn(name="id_respo_sol")
+	@JoinColumn(name = "id_respo_sol")
 	@JsonView({Views.Vol.class, Views.Saut.class})
 	private Parachutiste respoSol;
 	

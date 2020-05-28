@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import fr.formation.dao.IDAOBeerline;
 import fr.formation.dao.IDAOSaut;
+import fr.formation.model.BeerLine;
 import fr.formation.model.Saut;
 import fr.formation.projection.Views;
 
@@ -47,7 +49,16 @@ public class SautApiController {
 	public List<Saut> findAll() {
 		return daoSaut.findAll();
 	}
-
+	
+	/** Sélectione tout les sauts disponible sans filtres
+	 * faible informations
+	 * @return
+	 */
+	@GetMapping("/bl")
+	@JsonView(Views.Common.class)
+	public List<BeerLine> findAllBeerLine() {
+		return daoBeerLine.findAll();
+	}
 
 	/** Sélectione un saut avec son id
 	 * @param idSaut
@@ -81,6 +92,7 @@ public class SautApiController {
 	 * @param saut
 	 * @return
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SECRETAIRE')")
 	@PutMapping("/{idSaut}")
 	@JsonView(Views.Saut.class)
 	public Saut update(@PathVariable int idSaut, @RequestBody Saut saut) {
@@ -94,6 +106,7 @@ public class SautApiController {
 	 * @param idSaut
 	 * @return
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SECRETAIRE')")
 	@DeleteMapping("/{idSaut}/supp") 
 	@JsonView(Views.Saut.class)
 	public boolean delete(@PathVariable int idSaut) {

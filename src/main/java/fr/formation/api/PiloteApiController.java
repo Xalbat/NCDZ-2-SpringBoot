@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -63,6 +64,7 @@ public class PiloteApiController {
 	 * @throws Exception
 	 */
 	@PostMapping
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@JsonView(Views.Pilote.class)
 	public Pilote add(@Valid @RequestBody Pilote pilote, BindingResult result) throws Exception {
 		if (result.hasErrors()) {
@@ -77,6 +79,7 @@ public class PiloteApiController {
 	 * @param pilote
 	 * @return
 	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping("/{licence}")
 	@JsonView(Views.Pilote.class)
 	public Pilote update(@PathVariable int licence, @RequestBody Pilote pilote) {
@@ -90,7 +93,8 @@ public class PiloteApiController {
 	 * @param licence
 	 * @return
 	 */
-	@DeleteMapping("/{licence}/supp") 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@DeleteMapping("/{licence}") 
 	@JsonView(Views.Pilote.class)
 	public boolean delete(@PathVariable int licence) {
 		try {

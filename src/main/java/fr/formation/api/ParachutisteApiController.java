@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -65,6 +66,7 @@ public class ParachutisteApiController {
 	 * @return
 	 * @throws Exception
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SECRETAIRE')")
 	@PostMapping
 	@JsonView(Views.Parachutiste.class)
 	public Parachutiste add(@Valid @RequestBody Parachutiste parachutiste, BindingResult result) throws Exception {
@@ -79,6 +81,7 @@ public class ParachutisteApiController {
 	 * @param parachutiste
 	 * @return
 	 */
+	//Les parachutiste doivent pouvoir modifier leur parachute, donc ils faut qu'il ai les droits de modification
 	@PutMapping("/{numeroLicence}")
 	@JsonView(Views.Parachutiste.class)
 	public Parachutiste update(@PathVariable int numeroLicence, @RequestBody Parachutiste parachutiste) {
@@ -92,6 +95,7 @@ public class ParachutisteApiController {
 	 * @param numeroLicence
 	 * @return
 	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/{numeroLicence}") 
 	@JsonView(Views.Parachutiste.class)
 	public boolean delete(@PathVariable int numeroLicence) {
