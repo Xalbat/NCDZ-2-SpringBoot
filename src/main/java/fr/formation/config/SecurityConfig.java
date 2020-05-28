@@ -89,6 +89,7 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 		        http.authorizeRequests()
 		        .antMatchers("/assets/**").permitAll()
 				.antMatchers("/avionnage/**").permitAll()
+				.antMatchers("/connect/**").permitAll()
 				.antMatchers("/composer-avion/**").hasRole("ADMIN")
 				.antMatchers("/composer-vol/**").hasRole("ADMIN")
 				.antMatchers("/**").hasAnyRole("ADMIN", "SECRETAIRE")

@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import fr.formation.dao.IDAOCompte;
+import fr.formation.model.Compte;
 
 @Service
 public class AuthService implements UserDetailsService {
@@ -15,7 +16,7 @@ public class AuthService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserDetails user = new UserPrincipal(this.daoCompte.findByLogin(username));
+		UserDetails user = new UserPrincipal(this.daoCompte.findByLogin(username).orElse(new Compte()));
 		return user;
 	}
 
