@@ -42,6 +42,10 @@ public class Saut {
 	@JsonView(Views.Common.class)
 	private int altitude;
 	
+	@Column(name = "is_video")
+	@JsonView(Views.Common.class)
+	private boolean isVideo;
+	
 	
 	//Relation n°2 directe
 	/*@OneToMany
