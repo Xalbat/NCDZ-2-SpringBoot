@@ -47,6 +47,48 @@ public class Payement {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_parachutiste", nullable = false)
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Payement.class)
 	private Parachutiste parachutiste;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getValeur() {
+		return valeur;
+	}
+
+	public void setValeur(double valeur) {
+		this.valeur = valeur;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public MoyenPayement getMoyenPayement() {
+		return moyenPayement;
+	}
+
+	public void setMoyenPayement(MoyenPayement moyenPayement) {
+		this.moyenPayement = moyenPayement;
+	}
+
+	public Parachutiste getParachutiste() {
+		return parachutiste;
+	}
+
+	public void setParachutiste(Parachutiste parachutiste) {
+		this.parachutiste = parachutiste;
+	}
+	
+	
 }

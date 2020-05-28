@@ -41,6 +41,7 @@ public class AvionApiController {
 	 * faible informations
 	 * @return
 	 */
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping
 	@JsonView(Views.Avion.class)
 	public List<Avion> findAll() {

@@ -9,4 +9,5 @@ public class Views {
 	public static class Parachute extends Common{}
 	public static class Vol extends Common{}
 	public static class Saut extends Common{}
+	public static class Payement extends Common{}
 }
