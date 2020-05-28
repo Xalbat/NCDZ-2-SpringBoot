@@ -32,6 +32,7 @@ public class Payement {
 	private int id;
 	
 	@Column(name = "valeur", nullable = false)
+	@JsonView(Views.Common.class)
 	private double valeur;
 	
 	@Column(name = "date", nullable = false)
