@@ -18,10 +18,8 @@ public class UserPrincipal implements UserDetails {
 	
 	public UserPrincipal(Compte compte) {
 		if (compte == null) {
-			System.out.println("L'utilisateur est introuvable");
 			throw new UsernameNotFoundException("L'utilisateur est introuvable");
 		}
-		System.out.println("L'utilisateur est CONNU");
 		this.compte = compte;
 	}
 

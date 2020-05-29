@@ -32,7 +32,6 @@ public class CompteApiController {
 	@PostMapping("/login")
 	@JsonView(Views.Common.class)
 	public Compte login(@RequestBody Compte compte) {
-		System.out.println("yousk2");
 		Compte bddCompte = this.daoCompte.findByLogin(compte.getLogin()).orElseThrow(CompteNotFoundException::new);
 		if (!passwordEncoder.matches(compte.getPassword(), bddCompte.getPassword())) {
 			throw new CompteNotFoundException();
