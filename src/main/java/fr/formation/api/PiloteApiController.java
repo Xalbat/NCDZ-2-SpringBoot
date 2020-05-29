@@ -39,6 +39,7 @@ public class PiloteApiController {
 	 * faible informations
 	 * @return
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SECRETAIRE')")
 	@GetMapping
 	@JsonView(Views.Common.class)
 	public List<Pilote> findAll() {
@@ -50,6 +51,7 @@ public class PiloteApiController {
 	 * @param licence
 	 * @return
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_SECRETAIRE')")
 	@GetMapping("/{licence}")
 	@JsonView(Views.Pilote.class)
 	public Pilote findById(@PathVariable int licence) {
