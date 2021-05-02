@@ -31,8 +31,6 @@ public class PayementApiController {
 	@Autowired
 	private IDAOPayement daoPayement;
 
-
-	
 	
 	/** Retourne toute la liste des parachutes avec des informations sommaires
 	 * @return
@@ -56,7 +54,6 @@ public class PayementApiController {
 		return daoPayement.findById(id).orElse(new Payement());
 	}
 
-	
 	
 	/** Ajoute un Parachute à la BDD
 	 * @param parachute
@@ -105,5 +102,4 @@ public class PayementApiController {
 			return false;
 		}
 	}
-
 }

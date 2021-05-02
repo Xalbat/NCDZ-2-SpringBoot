@@ -107,5 +107,4 @@ public class ParachutisteApiController {
 			return false;
 		}
 	}
-
 }

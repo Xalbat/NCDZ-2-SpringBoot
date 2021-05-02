@@ -8,8 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class NcdzApplication {
 
 	public static void main(String[] args) {
-	//	BCryptPasswordEncoder b = new BCryptPasswordEncoder();
-	//	System.out.println(":"+b.encode(""));
+		//BCryptPasswordEncoder b = new BCryptPasswordEncoder();
+		//System.out.println(":"+b.encode("admin"));
 		SpringApplication.run(NcdzApplication.class, args);
 	}
 

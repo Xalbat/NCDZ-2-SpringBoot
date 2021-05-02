@@ -106,7 +106,4 @@ public class PiloteApiController {
 			return false;
 		}
 	}
-
-
-
 }

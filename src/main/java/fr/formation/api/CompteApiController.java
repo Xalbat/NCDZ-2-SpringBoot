@@ -27,8 +27,6 @@ public class CompteApiController {
 	private PasswordEncoder passwordEncoder;
 	
 
-	
-	
 	@PostMapping("/login")
 	@JsonView(Views.Common.class)
 	public Compte login(@RequestBody Compte compte) {
@@ -39,8 +37,4 @@ public class CompteApiController {
 
 		return bddCompte;
 	}
-
-	
-
-
 }

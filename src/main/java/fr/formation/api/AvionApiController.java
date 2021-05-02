@@ -41,8 +41,6 @@ public class AvionApiController {
 	private IDAOPilote daoPilote;
 	
 
-
-
 	/** Sélectione tout les Avions disponible sans filtres
 	 * faible informations
 	 * @return
@@ -121,7 +119,4 @@ public class AvionApiController {
 			return false;
 		}
 	}
-
-
-
 }
